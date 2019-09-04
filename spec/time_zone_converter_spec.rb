@@ -4,6 +4,9 @@ RSpec.describe TimeZoneConverter do
   end
 
   it "does something useful" do
-    expect(false).to eq(true)
+    expect(TimeZoneConverter.call(
+      city_a: "Warszawa",
+      city_b: "Bankok"
+    )).to_not be_empty
   end
 end
