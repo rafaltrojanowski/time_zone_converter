@@ -8,12 +8,8 @@ module TimeZoneConverter
         TODO:
       "
 
-    def c(city_a, city_b, time = Time.now)
-      puts TimeZoneConverter.call(
-        city_a: city_a,
-        city_b: city_b,
-        time: time,
-      ).inspect
+    def c(*args)
+      puts TimeZoneConverter.call(args).inspect
     end
   end
 end
