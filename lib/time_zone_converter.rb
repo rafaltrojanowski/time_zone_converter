@@ -32,6 +32,11 @@ module TimeZoneConverter
     end
 
     def self.get_time_from_string(time)
+      # For faster implementation have a look here:
+      # https://github.com/rails/rails/blob/aeba121a83965d242ed6d7fd46e9c166079a3230/activemodel/lib/active_model/type/helpers/time_value.rb#L65
+      # https://speakerdeck.com/calebthompson/the-life-changing-magic-of-tidying-up-activerecord-allocations?slide=132
+      # Thanks to @schneems
+
       hh = time.split(":").first.to_i
       mm = time.split(":").last.to_i
       offset = 0
