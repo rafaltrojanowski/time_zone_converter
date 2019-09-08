@@ -20,7 +20,7 @@ module TimeZoneConverter
     def self.get_time(city, time)
       json_file = 'data/cities.json'
       json = JSON.parse(File.read(json_file))
-      item = json.select { |k, _| k == city }
+      item = json.select! { |k, _| k == city }
 
       raise "Not found #{city}" unless item
 

@@ -10,6 +10,6 @@ RSpec.describe TimeZoneConverter do
   it "shoud be as faster that manual process" do
     expect do
       TimeZoneConverter.call(["Warszawa", "Bangkok"])
-    end.to perform_under(15).secs
+    end.to perform_under(10).secs
   end
 end
