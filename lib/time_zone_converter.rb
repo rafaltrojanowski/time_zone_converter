@@ -3,6 +3,7 @@ require "time_zone_converter/json_data_transformer"
 require "time_zone_converter/cli"
 require 'active_support/core_ext/time'
 require "nearest_time_zone"
+require 'oj'
 
 module TimeZoneConverter
   class Error < StandardError; end
@@ -19,7 +20,7 @@ module TimeZoneConverter
 
     def self.get_time(city, time)
       json_file = 'data/cities.json'
-      json = JSON.parse(File.read(json_file))
+      json = Oj.load(File.read(json_file))
       item = json.select! { |k, _| k == city }
 
       raise "Not found #{city}" unless item

@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "nearest_time_zone"
   spec.add_runtime_dependency "cities"
   spec.add_runtime_dependency "thor"
+  spec.add_runtime_dependency "oj"
 end
