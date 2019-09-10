@@ -4,6 +4,7 @@ require "time_zone_converter/cli"
 require 'active_support/core_ext/time'
 require "nearest_time_zone"
 require 'oj'
+require 'byebug'
 
 module TimeZoneConverter
   class Error < StandardError; end
@@ -12,7 +13,7 @@ module TimeZoneConverter
   # https://stackoverflow.com/questions/8349817/ruby-gem-for-finding-timezone-of-location
 
   def self.call(args, time = Time.current)
-    time = get_time_from_string(time) if time.is_a? String
+    time = string_to_time(time) if time.is_a? String
     args.map { |city| [city, get_time(city, time)] }
   end
 
@@ -32,25 +33,25 @@ module TimeZoneConverter
       time = time.in_time_zone(time_zone)
     end
 
-    def self.get_time_from_string(time)
-      # For faster implementation have a look here:
+    ISO_TIME = /\A(\d\d):(\d\d)\z/
+
+    # returns UTC
+    def self.string_to_time(string)
       # https://github.com/rails/rails/blob/aeba121a83965d242ed6d7fd46e9c166079a3230/activemodel/lib/active_model/type/helpers/time_value.rb#L65
-      # https://speakerdeck.com/calebthompson/the-life-changing-magic-of-tidying-up-activerecord-allocations?slide=132
-      # Thanks to @schneems
 
-      hh = time.split(":").first.to_i
-      mm = time.split(":").last.to_i
-      offset = 0
+      if string =~ ISO_TIME
+        offset = 0 # UTC +0
+        current_time = Time.new.utc
 
-      Time.new(
-        Time.current.year,
-        Time.current.month,
-        Time.current.day,
-        hh,
-        mm,
-        0,
-        offset
-      )
+        Time.new(
+          current_time.year,
+          current_time.month,
+          current_time.day,
+          $1.to_i,
+          $2.to_i,
+          0,
+          offset
+        )
+      end
     end
-
 end
