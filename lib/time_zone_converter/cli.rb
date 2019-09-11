@@ -3,6 +3,26 @@ require "thor"
 module TimeZoneConverter
   class Cli < Thor
 
+    desc 'c',
+      "
+        It allows to answer the question:
+        What time it is in x, y, z - right now!
+
+        Takes list of the cities
+
+        Returns array of arrays: [[city, time], [...]]
+
+        Example: time_zone_converter ct 'Chiang Mai' Skopje '19:00'
+        =>
+          [
+            ['Chiang Mai', Wed, 11 Sep 2019 14:44:18 +07 +07:00],
+            ['Skopje', Wed, 11 Sep 2019 09:44:18 CEST +02:00]
+          ]
+      "
+    def c(*args)
+      puts TimeZoneConverter.call(args, Time.current, :local).inspect
+    end
+
     desc 'ct',
       "
         It allows to answer the question:

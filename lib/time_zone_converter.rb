@@ -16,7 +16,6 @@ module TimeZoneConverter
     if method == :local
       time_zone = get_zone(args.first)
     end
-
     time = string_to_time(time, method, time_zone) if time.is_a? String
     args.map { |city| [city, get_time(city, time)] }
   end
