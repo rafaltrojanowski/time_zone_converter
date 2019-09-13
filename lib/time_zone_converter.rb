@@ -56,7 +56,6 @@ module TimeZoneConverter
       # https://github.com/rails/rails/blob/aeba121a83965d242ed6d7fd46e9c166079a3230/activemodel/lib/active_model/type/helpers/time_value.rb#L65
 
       if string =~ ISO_TIME
-
         if method == :utc
           offset = 0 # UTC +0
           current_time = Time.new.utc
@@ -71,8 +70,9 @@ module TimeZoneConverter
             offset
           )
         else
-          current_time = Time.new
-          offset = Time.zone_offset(time_zone)
+          current_time = Time.current
+          zone = ActiveSupport::TimeZone[time_zone]
+          offset = zone.utc_offset
 
           Time.new(
             current_time.year,
