@@ -12,7 +12,7 @@ module TimeZoneConverter
   # Inspired by:
   # https://stackoverflow.com/questions/8349817/ruby-gem-for-finding-timezone-of-location
 
-  def self.call(args, time = Time.current, method)
+  def self.call(args, time = Time.current, method = :utc)
     if method == :local
       time_zone = get_zone(args.first)
     end

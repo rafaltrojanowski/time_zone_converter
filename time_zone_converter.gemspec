@@ -8,16 +8,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Rafał Trojanowski"]
   spec.email         = ["rt.trojanowski@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
-  spec.homepage      = "http://www.test.pl"
+  spec.summary       = %q{CLI which calculates time for a few cities.}
+  spec.description   = %q{It doesn't use any external API and may be a slow with more arguments}
+  spec.homepage      = "https://github.com/rafaltrojanowski/time_zone_converter"
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "http://www.test.pl"
-  spec.metadata["changelog_uri"] = "http://www.test.pl"
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = spec.homepage
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -33,10 +33,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency 'rspec-benchmark'
   spec.add_development_dependency "byebug"
+  spec.add_development_dependency "cities"
 
   spec.add_runtime_dependency "activesupport"
   spec.add_runtime_dependency "nearest_time_zone"
-  spec.add_runtime_dependency "cities"
   spec.add_runtime_dependency "thor"
   spec.add_runtime_dependency "oj"
 end

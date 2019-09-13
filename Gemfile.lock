@@ -3,7 +3,6 @@ PATH
   specs:
     time_zone_converter (0.1.0)
       activesupport
-      cities
       nearest_time_zone
       oj
       thor
@@ -68,6 +67,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   byebug
+  cities
   rake (~> 10.0)
   rspec (~> 3.0)
   rspec-benchmark

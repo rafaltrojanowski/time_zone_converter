@@ -7,9 +7,9 @@ RSpec.describe TimeZoneConverter do
     expect(TimeZoneConverter::VERSION).not_to be nil
   end
 
-  it "shoud be as faster that manual process" do
+  it "shoud be as faster than manual process" do
     expect do
       TimeZoneConverter.call(["Warszawa", "Bangkok"])
-    end.to perform_under(10).secs
+    end.to perform_under(11).secs
   end
 end
