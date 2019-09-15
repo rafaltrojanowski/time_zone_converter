@@ -13,77 +13,59 @@ module TimeZoneConverter
   # https://stackoverflow.com/questions/8349817/ruby-gem-for-finding-timezone-of-location
 
   def self.call(args, time = Time.current, method = :utc)
-    if method == :local
-      time_zone = get_zone(args.first)
+    arr = Array.new
+
+    if method == :utc
+      time = string_to_time(time, "UTC") if time.is_a? String
+      arr = args.map { |city| [city, get_time(city, time)] }
+    else # :local
+      # Gets time with zone for the first city
+      time_zone = get_nearest_time_zone(args.first)
+      time = string_to_time(time, time_zone) if time.is_a? String
+
+      # Add first item
+      arr << [args.first, time]
+
+      # Convert time for the rest of the cities in the args
+      args[1..-1].each { |city| arr << [city, get_time(city, time)] }
+      arr
     end
-    time = string_to_time(time, method, time_zone) if time.is_a? String
-    args.map { |city| [city, get_time(city, time)] }
   end
 
   private
 
-    def self.get_time(city, time)
-      json_file = 'data/cities.json'
-      json = Oj.load(File.read(json_file))
-      item = json.select! { |k, _| k == city }
+    JSON_FILE = 'data/cities.json'
 
+    def self.get_nearest_time_zone(city)
+      json = Oj.load(File.read(JSON_FILE))
+      item = json.select! { |k, _| k == city }
       raise "Not found #{city}" unless item
 
-      lat = item[city][0]
-      lng = item[city][1]
-
+      lat, lng = item[city][0], item[city][1]
       time_zone = NearestTimeZone.to(lat.to_f, lng.to_f)
-      time = time.in_time_zone(time_zone)
     end
 
-    def self.get_zone(city)
-      json_file = 'data/cities.json'
-      json = Oj.load(File.read(json_file))
-      item = json.select! { |k, _| k == city }
-
-      raise "Not found #{city}" unless item
-
-      lat = item[city][0]
-      lng = item[city][1]
-
-      time_zone = NearestTimeZone.to(lat.to_f, lng.to_f)
+    def self.get_time(city, time)
+      time_zone = get_nearest_time_zone(city)
+      time.in_time_zone(time_zone)
     end
 
     ISO_TIME = /\A(\d\d):(\d\d)\z/
 
-    # returns UTC
-    def self.string_to_time(string, method, time_zone)
-      # https://github.com/rails/rails/blob/aeba121a83965d242ed6d7fd46e9c166079a3230/activemodel/lib/active_model/type/helpers/time_value.rb#L65
-
+    def self.string_to_time(string, time_zone)
       if string =~ ISO_TIME
-        if method == :utc
-          offset = 0 # UTC +0
-          current_time = Time.new.utc
+        zone = ActiveSupport::TimeZone[time_zone]
+        current_time = Time.new.utc
 
-          Time.new(
-            current_time.year,
-            current_time.month,
-            current_time.day,
-            $1.to_i,
-            $2.to_i,
-            0,
-            offset
-          )
-        else
-          current_time = Time.current
-          zone = ActiveSupport::TimeZone[time_zone]
-          offset = zone.utc_offset
-
-          Time.new(
-            current_time.year,
-            current_time.month,
-            current_time.day,
-            $1.to_i,
-            $2.to_i,
-            0,
-            offset
-          )
-        end
+        Time.new(
+          current_time.year,
+          current_time.month,
+          current_time.day,
+          $1.to_i,
+          $2.to_i,
+          0,
+          zone
+        )
       end
     end
 end

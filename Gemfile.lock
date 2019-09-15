@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    time_zone_converter (0.1.0)
+    time_zone_converter (0.2.0)
       activesupport
       nearest_time_zone
       oj
