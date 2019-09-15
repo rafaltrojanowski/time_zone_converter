@@ -16,12 +16,12 @@ module TimeZoneConverter
     arr = Array.new
 
     if method == :utc
-      time = string_to_time(time, "UTC") if time.is_a? String
+      time = string_to_time(time, "UTC")
       arr = args.map { |city| [city, get_time(city, time)] }
     else # :local
-      # Gets time with zone for the first city
+      # Get time with zone for the first city
       time_zone = get_nearest_time_zone(args.first)
-      time = string_to_time(time, time_zone) if time.is_a? String
+      time = string_to_time(time, time_zone)
 
       # Add first item
       arr << [args.first, time]
@@ -53,6 +53,8 @@ module TimeZoneConverter
     ISO_TIME = /\A(\d\d):(\d\d)\z/
 
     def self.string_to_time(string, time_zone)
+      return unless string.is_a? String
+
       if string =~ ISO_TIME
         zone = ActiveSupport::TimeZone[time_zone]
         current_time = Time.new.utc
