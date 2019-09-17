@@ -12,7 +12,7 @@ module TimeZoneConverter
 
         Returns array of arrays: [[city, time], [...]]
 
-        Example: time_zone_converter ct 'Chiang Mai' Skopje '19:00'
+        Example: time_zone_converter c 'Chiang Mai' Skopje
 
         =>
           [
@@ -21,7 +21,7 @@ module TimeZoneConverter
           ]
       LONGDESC
     def c(*args)
-      puts TimeZoneConverter.call(args, Time.current, :local).inspect
+      puts TimeZoneConverter.call(args, nil, :local).inspect
     end
 
     desc 'ct', "Given time in a cities"

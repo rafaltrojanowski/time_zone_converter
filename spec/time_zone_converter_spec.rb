@@ -1,4 +1,5 @@
 require 'rspec-benchmark'
+require 'timecop'
 
 RSpec.describe TimeZoneConverter do
   include RSpec::Benchmark::Matchers
@@ -7,16 +8,35 @@ RSpec.describe TimeZoneConverter do
     expect(TimeZoneConverter::VERSION).not_to be nil
   end
 
-  context 'local' do
-    subject { described_class.call(["Warszawa", "Bangkok"], "10:00", :local) }
+  context 'when local' do
+    context 'and when time passed in' do
+      subject { described_class.call(["Warszawa", "Bangkok"], "10:00", :local) }
 
-    it "returns proper data" do
-      expect(subject).to eq(
-        [
-          ["Warszawa", Time.parse('2019-09-15 10:00:00.000000000 +0200')],
-          ["Bangkok", Time.parse('2019-09-15 15:00:00.000000000 +0700')]
-        ]
-      )
+      it "returns proper data" do
+        expect(subject).to eq(
+          [
+            ["Warszawa", Time.parse('2019-09-15 10:00:00.000000000 +0200')],
+            ["Bangkok", Time.parse('2019-09-15 15:00:00.000000000 +0700')]
+          ]
+        )
+      end
+    end
+
+    context 'and when time NOT passed in' do
+      subject { described_class.call(["Warszawa", "Bangkok"], nil, :local) }
+
+      it "returns proper data" do
+        time = Time.new(2019, 9, 1, 12, 0, 0)
+
+        Timecop.freeze(time) do
+          expect(subject).to eq(
+            [
+              ["Warszawa", Time.parse('2019-09-01 07:00:00.000000000 +0200')],
+              ["Bangkok", Time.parse('2019-09-01 12:00:00.000000000 +0700')]
+            ]
+          )
+        end
+      end
     end
   end
 

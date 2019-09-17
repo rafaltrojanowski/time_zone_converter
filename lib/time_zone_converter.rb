@@ -12,7 +12,7 @@ module TimeZoneConverter
   # Inspired by:
   # https://stackoverflow.com/questions/8349817/ruby-gem-for-finding-timezone-of-location
 
-  def self.call(args, time = Time.current, method = :utc)
+  def self.call(args, time, method = :utc)
     arr = Array.new
 
     if method == :utc
@@ -21,7 +21,12 @@ module TimeZoneConverter
     else # :local
       # Get time with zone for the first city
       time_zone = get_nearest_time_zone(args.first)
-      time = string_to_time(time, time_zone)
+
+      if time.nil?
+        time = Time.current.in_time_zone(time_zone)
+      else
+        time = string_to_time(time, time_zone)
+      end
 
       # Add first item
       arr << [args.first, time]
@@ -52,10 +57,10 @@ module TimeZoneConverter
 
     ISO_TIME = /\A(\d\d):(\d\d)\z/
 
-    def self.string_to_time(string, time_zone)
-      return unless string.is_a? String
+    def self.string_to_time(time, time_zone)
+      return time unless time.is_a? String
 
-      if string =~ ISO_TIME
+      if time =~ ISO_TIME
         zone = ActiveSupport::TimeZone[time_zone]
         current_time = Time.new.utc
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    time_zone_converter (0.2.0)
+    time_zone_converter (0.2.2)
       activesupport
       nearest_time_zone
       oj
@@ -57,6 +57,7 @@ GEM
     rspec-support (3.8.2)
     thor (0.20.3)
     thread_safe (0.3.6)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     zeitwerk (2.1.10)
@@ -72,6 +73,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   rspec-benchmark
   time_zone_converter!
+  timecop
 
 BUNDLED WITH
    2.0.2
