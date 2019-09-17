@@ -37,7 +37,7 @@ module TimeZoneConverter
     JSON_FILE = 'data/cities.json'
 
     def self.get_nearest_time_zone(city)
-      json = Oj.load(File.read(JSON_FILE))
+      json = Oj.load(File.read(File.join(File.dirname(__FILE__), "../#{JSON_FILE}")))
       item = json.select! { |k, _| k == city }
       raise "Not found #{city}" unless item
 
