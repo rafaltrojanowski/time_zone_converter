@@ -26,13 +26,13 @@ RSpec.describe TimeZoneConverter do
       subject { described_class.call(["Warszawa", "Bangkok"], nil, :local) }
 
       it "returns proper data" do
-        time = Time.new(2019, 9, 1, 12, 0, 0)
+        time = Time.new(2019, 9, 1, 12, 0, 0, "+02:00")
 
         Timecop.freeze(time) do
           expect(subject).to eq(
             [
-              ["Warszawa", Time.parse('2019-09-01 07:00:00.000000000 +0200')],
-              ["Bangkok", Time.parse('2019-09-01 12:00:00.000000000 +0700')]
+              ["Warszawa", Time.parse('2019-09-01 12:00:00.000000000 +0200')],
+              ["Bangkok", Time.parse('2019-09-01 17:00:00.000000000 +0700')]
             ]
           )
         end
