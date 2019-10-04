@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    time_zone_converter (0.2.2)
+    time_zone_converter (0.2.3)
       activesupport
       nearest_time_zone
       oj
@@ -28,13 +28,13 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     kdtree (0.4)
-    minitest (5.11.3)
+    minitest (5.12.2)
     multi_json (1.13.1)
     nearest_time_zone (0.0.4)
       andand
       kdtree
       require_all
-    oj (3.9.1)
+    oj (3.9.2)
     rake (10.5.0)
     require_all (2.0.0)
     rspec (3.8.0)
