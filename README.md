@@ -1,6 +1,6 @@
 # TimeZoneConverter
 
-![screenshot](https://www.primogif.com/p/26uf4EHzNGXEXFpeg)
+![screenshot](img/time-zone.gif)
 
 A small gem that prints out the time in other locations.
 It does support a multiple cities, but it may be a bit slow in that case.
