@@ -3,7 +3,7 @@
 ![screenshot](img/time-zone.gif)
 
 A small gem that prints out the time in other locations.
-It does support a multiple cities, but it may be a bit slow in that case.
+It supports a multiple cities, but it may be a bit slow in that case.
 Any ideas how to make it faster are highly welcomed.
 
 Inspired by:
