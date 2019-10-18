@@ -9,8 +9,9 @@ Any ideas how to make it faster are highly welcomed.
 Inspired by:
 https://www.timeanddate.com/worldclock/converter.html
 
-It uses cities data extracted from cities gem: https://github.com/joecorcoran/cities
-For lat, long calculation it uses another gem: https://rubygems.org/gems/nearest_time_zone
+It uses cities data extracted from cities gem: 
+https://github.com/joecorcoran/cities
+For nearest time zone calculation, based on city's coordinates, it uses another gem: https://rubygems.org/gems/nearest_time_zone
 
 ## Usage:
 
