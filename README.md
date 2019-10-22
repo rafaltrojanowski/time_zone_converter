@@ -15,8 +15,7 @@ In a few words, it prints out the time in other cities. Cities are passed as arg
 ```
 time_zone_converter c Warszawa Bangkok
 ```
-
-Returns:
+Output:
 ```
 [
   ["Warszawa", Tue, 22 Oct 2019 13:30:02 CEST +02:00],
@@ -28,8 +27,7 @@ Returns:
 ```
 time_zone_converter ct 'Chiang Mai' Skopje '19:00'
 ```
-
-Returns:
+Output:
 ```
 [
   ["Chiang Mai", 2019-10-22 19:00:00 +0700], 
@@ -41,10 +39,7 @@ Returns:
 ```
 time_zone_converter ctu Bangkok Warszawa '10:00'
 ```
-Returns:
-
-### Output:
-
+Output:
 ```
 [
   ["Bangkok", Tue, 22 Oct 2019 17:00:00 +07 +07:00], 
