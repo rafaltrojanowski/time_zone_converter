@@ -1,4 +1,4 @@
-# TimeZoneConverter
+# TimeZoneConverter CLI
 
 ![screenshot](img/time-zone.gif)
 
