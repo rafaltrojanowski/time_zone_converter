@@ -12,13 +12,17 @@ RSpec.describe TimeZoneConverter do
     context 'and when time passed in' do
       subject { described_class.call(["Warszawa", "Bangkok"], "10:00", :local) }
 
+      time = Time.new(2019, 9, 15, 12, 0, 0, "+02:00")
+
       it "returns proper data" do
-        expect(subject).to eq(
-          [
-            ["Warszawa", Time.parse('2019-09-15 10:00:00.000000000 +0200')],
-            ["Bangkok", Time.parse('2019-09-15 15:00:00.000000000 +0700')]
-          ]
-        )
+        Timecop.freeze(time) do
+          expect(subject).to eq(
+            [
+              ["Warszawa", Time.parse('2019-09-15 10:00:00.000000000 +0200')],
+              ["Bangkok", Time.parse('2019-09-15 15:00:00.000000000 +0700')]
+            ]
+          )
+        end
       end
     end
 
@@ -44,18 +48,22 @@ RSpec.describe TimeZoneConverter do
     subject { described_class.call(["Warszawa", "Bangkok"], "10:00", :utc) }
 
     it "returns proper data" do
-      expect(subject).to eq(
-        [
-          ["Warszawa", Time.parse('2019-09-15 12:00:00.000000000 +0200')],
-          ["Bangkok", Time.parse('2019-09-15 17:00:00.000000000 +0700')]
-        ]
-      )
+      time = Time.new(2019, 9, 15, 12, 0, 0, "+02:00")
+
+      Timecop.freeze(time) do
+        expect(subject).to eq(
+          [
+            ["Warszawa", Time.parse('2019-09-15 12:00:00.000000000 +0200')],
+            ["Bangkok", Time.parse('2019-09-15 17:00:00.000000000 +0700')]
+          ]
+        )
+      end
     end
   end
 
   it "shoud be faster than manual process" do
     expect do
       TimeZoneConverter.call(["Warszawa", "Bangkok"], "10:00", :local)
-    end.to perform_under(10).secs
+    end.to perform_under(11).secs
   end
 end
