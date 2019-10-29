@@ -35,6 +35,31 @@ Output:
 ]
 ```
 
+Note: Time ranges are also supported:
+
+```
+time_zone_converter ct Warszawa Bangkok '19:00-21:00'
+```
+
+Output:
+
+```
+[
+  ["Warszawa",
+    [
+      2019-10-29 19:00:00 +0100,
+      2019-10-29 21:00:00 +0100
+    ]
+  ],
+  ["Bangkok",
+    [
+      Wed, 30 Oct 2019 01:00:00 +07 +07:00, 
+      Wed, 30 Oct 2019 03:00:00 +07 +07:00
+    ]
+  ]
+]
+```
+
 ### 'ctu' command: given UTC+0 time in other cities
 ```
 time_zone_converter ctu Bangkok Warszawa '10:00'

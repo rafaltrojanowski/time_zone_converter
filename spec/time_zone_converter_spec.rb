@@ -42,6 +42,33 @@ RSpec.describe TimeZoneConverter do
         end
       end
     end
+
+    context 'and when time range passed in' do
+      subject { described_class.call(["Warszawa", "Bangkok"], "10:00-12:00", :local) }
+
+      it "returns proper data" do
+        time = Time.new(2019, 9, 1, 12, 0, 0, "+02:00")
+
+        Timecop.freeze(time) do
+          expect(subject).to eq(
+            [
+              ["Warszawa", 
+                [
+                  Time.parse('2019-09-01 10:00:00.000000000 +0200'),
+                  Time.parse('2019-09-01 12:00:00.000000000 +0200')
+                ]
+              ],
+              ["Bangkok", 
+                [
+                  Time.parse('2019-09-01 15:00:00.000000000 +0700'),
+                  Time.parse('2019-09-01 17:00:00.000000000 +0700')
+                ]
+              ]
+            ]
+          )
+        end
+      end
+    end
   end
 
   context 'utc' do
