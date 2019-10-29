@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Rafał Trojanowski"]
   spec.email         = ["rt.trojanowski@gmail.com"]
 
-  spec.summary       = %q{CLI which calculates time for a few cities.}
-  spec.description   = %q{It doesn't use any external API and may be a slow with more arguments}
+  spec.summary       = %q{CLI which calculates time for a different time zone locations.}
+  spec.description   = %q{CLI which calculates time for a different time zone locations.}
   spec.homepage      = "https://github.com/rafaltrojanowski/time_zone_converter"
   spec.license       = "MIT"
 
