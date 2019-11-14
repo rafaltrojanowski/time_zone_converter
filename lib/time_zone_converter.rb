@@ -56,12 +56,12 @@ module TimeZoneConverter
       if time.is_a? Array
         time.map { |t| t.in_time_zone(time_zone) }
       else
-        time.in_time_zone(time_zone) 
+        time.in_time_zone(time_zone)
       end
     end
 
-    ISO_TIME = /\A(\d\d):(\d\d)\z/
-    ISO_TIME_RANGE = /\A(\d\d):(\d\d)-(\d\d):(\d\d)\z/
+    ISO_TIME = /\A(\d?\d):(\d\d)\z/
+    ISO_TIME_RANGE = /\A(\d?\d):(\d\d)-(\d?\d):(\d\d)\z/
 
     # Inspired by: https://github.com/rails/rails/blob/aeba121a83965d242ed6d7fd46e9c166079a3230/activemodel/lib/active_model/type/helpers/time_value.rb#L65
     # @returns: Time object or an Array of Time objects

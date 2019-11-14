@@ -52,13 +52,13 @@ RSpec.describe TimeZoneConverter do
         Timecop.freeze(time) do
           expect(subject).to eq(
             [
-              ["Warszawa", 
+              ["Warszawa",
                 [
                   Time.parse('2019-09-01 10:00:00.000000000 +0200'),
                   Time.parse('2019-09-01 12:00:00.000000000 +0200')
                 ]
               ],
-              ["Bangkok", 
+              ["Bangkok",
                 [
                   Time.parse('2019-09-01 15:00:00.000000000 +0700'),
                   Time.parse('2019-09-01 17:00:00.000000000 +0700')
@@ -92,5 +92,9 @@ RSpec.describe TimeZoneConverter do
     expect do
       TimeZoneConverter.call(["Warszawa", "Bangkok"], "10:00", :local)
     end.to perform_under(11).secs
+  end
+
+  it "shoud work with time without leading zero" do
+    expect(TimeZoneConverter.call(["Warszawa", "Bangkok"], "8:00-9:00", :local)).to_not be_empty
   end
 end

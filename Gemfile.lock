@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    time_zone_converter (0.2.4)
+    time_zone_converter (0.2.5)
       activesupport
       nearest_time_zone
       oj
@@ -10,12 +10,12 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.0)
+    activesupport (6.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-      zeitwerk (~> 2.1, >= 2.1.8)
+      zeitwerk (~> 2.2)
     andand (1.3.3)
     benchmark-malloc (0.1.0)
     benchmark-perf (0.5.0)
@@ -28,7 +28,7 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     kdtree (0.4)
-    minitest (5.12.2)
+    minitest (5.13.0)
     multi_json (1.13.1)
     nearest_time_zone (0.0.4)
       andand
@@ -60,7 +60,7 @@ GEM
     timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    zeitwerk (2.2.0)
+    zeitwerk (2.2.1)
 
 PLATFORMS
   ruby
