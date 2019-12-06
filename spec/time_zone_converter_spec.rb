@@ -88,13 +88,13 @@ RSpec.describe TimeZoneConverter do
     end
   end
 
-  it "shoud be faster than manual process" do
+  it "is faster than manual process" do
     expect do
       TimeZoneConverter.call(["Warszawa", "Bangkok"], "10:00", :local)
     end.to perform_under(11).secs
   end
 
-  it "shoud work with time without leading zero" do
+  it "works with time without leading zero" do
     expect(TimeZoneConverter.call(["Warszawa", "Bangkok"], "8:00-9:00", :local)).to_not be_empty
   end
 end
