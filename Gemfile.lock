@@ -10,12 +10,11 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.3.1)
+    activesupport (7.0.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
-      zeitwerk (~> 2.2, >= 2.2.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
     andand (1.3.3)
     benchmark-malloc (0.1.0)
     benchmark-perf (0.5.0)
@@ -23,12 +22,12 @@ GEM
     byebug (11.0.1)
     cities (0.3.1)
       multi_json (~> 1.8)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.10)
     diff-lcs (1.3)
-    i18n (1.8.2)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     kdtree (0.4)
-    minitest (5.14.1)
+    minitest (5.17.0)
     multi_json (1.13.1)
     nearest_time_zone (0.0.4)
       andand
@@ -56,11 +55,9 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
     thor (0.20.3)
-    thread_safe (0.3.6)
     timecop (0.9.1)
-    tzinfo (1.2.7)
-      thread_safe (~> 0.1)
-    zeitwerk (2.3.0)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
 
 PLATFORMS
   ruby
